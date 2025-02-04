@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\RegisterRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ use Illuminate\Support\Str;
 class AuthController extends Controller
 {
     // регестрация пользователя
-     public function register(Request $request){
+     public function register(RegisterRequest $request){
          $role_user = Role::where('code','user')->first();
          $user = User::create([
              'surname' => $request->surname,
