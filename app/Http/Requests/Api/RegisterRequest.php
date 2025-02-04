@@ -42,7 +42,9 @@ class RegisterRequest extends ApiRequest
             'password.max' => 'Максимум 255 символа',
             'password.min' => 'Минимум 6 символов',
 
-            'birthday.date' => 'Дата должна быть вот в формате: ГГГГ-ММ-ДД'
+            'email.unique' => 'Такая почта уже существует',
+
+            'birthday.date' => 'Дата должна быть вот в формате: ГГГГ-ММ-ДД',
         ];
     }
 }
