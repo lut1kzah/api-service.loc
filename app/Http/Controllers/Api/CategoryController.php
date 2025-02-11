@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\Api\ApiException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CategoryRequest;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,10 @@ class CategoryController extends Controller
 {
     public function index(){
         $categories = Category::all();
-        return response()->json($categories)->setStatusCode(200);
+        return response()->json(CategoryResource::collection($categories) )->setStatusCode(200);
     }
-    public function show(CategoryRequest $request){
-        $category= Category::create($request->validate());
-        return response()->json($category)->setStatusCode(200);
+    public function show(CategoryRequest $category){
+        return response()->json(new CategoryResource($category))->setStatusCode(200);
     }
     public function store(CategoryRequest $request){
         $category = Category::create($request->validated());
@@ -32,7 +32,6 @@ class CategoryController extends Controller
     public function destroy(Category $category){
             $category->delete();
             return response()->json()->setStatusCode(204);
-
 
     }
     /*  public function show($id)
